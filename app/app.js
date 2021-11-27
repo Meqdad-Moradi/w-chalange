@@ -20,7 +20,7 @@ window.addEventListener("scroll", stickyHeader);
 
 const slides = Array.from(document.querySelectorAll(".slide"));
 const sliderIndicator = document.querySelectorAll(".slider-indicator span");
-const auto = false;
+const auto = true;
 const intervalTime = 5000;
 let interval;
 let counter = 0;

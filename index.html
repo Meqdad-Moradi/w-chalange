@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./style/style.css" />
+    <script src="./app/app.js" defer></script>
+    <title>Womensbest</title>
+  </head>
+  <body>
+    <!-- start of showcase -->
+    <div class="showcase">
+      <!-- main header -->
+      <header id="header">
+        <div class="container">
+          <div class="logo">
+            <a href="./index.html">
+              <h1>logo</h1>
+            </a>
+          </div>
+
+          <nav class="nav" data-visible="false">
+            <ul class="nav-list">
+              <li class="nav-list-item"><a href="./index.html">home</a></li>
+              <li class="nav-list-item">
+                <a href="./catalog.html">catalog</a>
+                <ul class="nav-list-collapse">
+                  <li><a href="#" class="active">smart watches</a></li>
+                  <li><a href="#">laptops</a></li>
+                  <li><a href="#">TVs</a></li>
+                </ul>
+              </li>
+              <li class="nav-list-item"><a href="#contact">contact</a></li>
+            </ul>
+          </nav>
+
+          <nav class="nav-cart-container">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-shopping-cart"></i>
+          </nav>
+
+          <div class="nav-toggle" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </header>
+
+      <!-- showcase slider -->
+      <div class="slide-container">
+        <div class="slide active">
+          <img src="./images/slide-img-1.jpg" alt="slide image" />
+          <div class="content">
+            <h1>slide one</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a href="#" class="btn">show product</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./images/slide-img-2.jpg" alt="slide image" />
+          <div class="content">
+            <h1>slide two</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <a href="#" class="btn">show product</a>
+          </div>
+        </div>
+        <div class="slide">
+          <img src="./images/slide-img-3.jpg" alt="slide image" />
+          <div class="content">
+            <h3>black friday</h3>
+            <h1>use the chance</h1>
+            <p>and get limited offers.</p>
+            <a href="#" class="btn">learn more</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- slider indicator -->
+      <div class="slider-indicator">
+        <span class="active"></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <!-- end of showcase -->
+
+
+    <!--  -->
+  </body>
+</html>

@@ -17,7 +17,7 @@
   </head>
   <body>
     <!-- start of showcase -->
-    <div class="showcase">
+    <div class="showcase catalog">
       <!-- main header -->
       <header id="header">
         <div class="container">
@@ -29,16 +29,26 @@
 
           <nav class="nav" data-visible="false">
             <ul class="nav-list">
-              <li class="nav-list-item"><a href="./index.html">home</a></li>
               <li class="nav-list-item">
-                <a href="./catalog.html">catalog</a>
-                <ul class="nav-list-collapse">
-                  <li><a href="#" class="active">smart watches</a></li>
+                <a href="./index.html">home</a>
+              </li>
+
+              <li class="nav-list-item">
+                <a href="./catalog.html" class="active">catalog</a>
+              </li>
+
+              <li class="nav-list-item">
+                <a href="#about">about</a>
+                <ul class="nav-list-dropdown">
+                  <li><a href="#">smart watches</a></li>
                   <li><a href="#">laptops</a></li>
                   <li><a href="#">TVs</a></li>
                 </ul>
               </li>
-              <li class="nav-list-item"><a href="#contact">contact</a></li>
+
+              <li class="nav-list-item">
+                <a href="#contact">contact</a>
+              </li>
             </ul>
           </nav>
 
@@ -52,8 +62,26 @@
           </div>
         </div>
       </header>
+
+      <!-- showcase content -->
+      <div class="showcase-content">
+        <h1>products</h1>
+      </div>
     </div>
     <!-- end of showcase -->
+
+    <!-- start of product -->
+    <section id="display-product">
+      <div class="container">
+        <h1 class="main-title">products</h1>
+
+        <!-- filter btns -->
+        <div class="filter-btn-container"></div>
+        <!-- show products -->
+        <div class="products"></div>
+      </div>
+    </section>
+    <!-- end of product -->
 
     <!--  -->
   </body>

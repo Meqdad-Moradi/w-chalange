@@ -26,6 +26,7 @@ body {
   font-weight: 400;
   line-height: 1.8;
   overflow-x: hidden;
+  color: #2f2f2e;
 }
 
 img {
@@ -43,20 +44,63 @@ a {
 }
 
 .btn {
-  font-size: 1.125rem;
   display: inline-block;
-  color: #fff;
-  background-color: #ffb00d;
-  padding: 0.3em 1.5em;
-  margin-top: 2em;
-  border-radius: 50px;
+  font-size: 1.125rem;
   text-transform: capitalize;
+  background-color: #ffb00d;
+  color: #fff;
+  padding: 0.4em 1.5em;
+  margin-top: 2em;
+  border-radius: 5px;
+  cursor: pointer !important;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 
 .btn:hover {
-  opacity: 0.9;
+  background-color: #000;
+}
+
+section {
+  padding-block: 4em;
+}
+
+.main-title {
+  font-weight: 700;
+  font-size: 2.625rem;
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.main-title::after {
+  content: "";
+  height: 8px;
+  width: 102%;
+  background-color: #ffb00d;
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  border-radius: 50px;
+  z-index: -1;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.body-text {
+  font-size: 1rem;
 }
 
 .container {
@@ -152,7 +196,7 @@ a {
   background-color: #fff;
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: -2px;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
   -webkit-transition: 0.3s ease-in-out;
@@ -163,15 +207,15 @@ a {
   width: 100%;
 }
 
-.showcase #header .nav .nav-list .nav-list-item a.active {
-  color: #2f2f2e;
+.showcase #header .nav .nav-list .nav-list-item a.active::after {
+  width: 100%;
 }
 
 .showcase #header .nav .nav-list .nav-list-item:not(:last-child) {
   margin-right: 2em;
 }
 
-.showcase #header .nav .nav-list-collapse {
+.showcase #header .nav .nav-list-dropdown {
   display: none;
 }
 
@@ -374,5 +418,102 @@ a {
   .slide .content h1 {
     font-size: 2rem !important;
   }
+}
+
+/* import catalog page */
+.showcase.catalog {
+  background: url("../images/slide-img-1.jpg") no-repeat center center/cover;
+  min-height: 80vh;
+}
+
+.showcase.catalog .showcase-content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: #fff;
+  z-index: 100;
+}
+
+.showcase.catalog .showcase-content h1 {
+  text-transform: capitalize;
+  letter-spacing: 4px;
+}
+
+#display-product .products {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 3em;
+  margin-top: 2em;
+}
+
+#display-product .filter-btn-container {
+  margin: 2em 0 3em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#display-product .filter-btn-container .filter-btn {
+  font-family: "Poppins", sans-serif;
+  background-color: #000;
+  color: #fff;
+  padding: 0.5em 2em;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#display-product .filter-btn-container .filter-btn.active {
+  background-color: #ffb00d;
+}
+
+#display-product .filter-btn-container .filter-btn:not(:last-child) {
+  margin-right: 0.1em;
+}
+
+#display-product .product {
+  border: 1px solid #f1f0f1;
+  padding: 2em;
+  border-radius: 10px;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#display-product .product:hover {
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+#display-product .product .title {
+  margin-bottom: 0.5em;
+}
+
+#display-product .product .price {
+  color: #808080;
+}
+
+#display-product .product .btn {
+  cursor: pointer;
+  padding: 0.6em 1.5em;
 }
 /*# sourceMappingURL=style.css.map */

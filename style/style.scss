@@ -16,7 +16,7 @@
     content: "";
     height: 100%;
     width: 100%;
-    background: linear-gradient(45deg, rgb(35, 35, 245), rgb(228, 37, 164));
+    background: $linearGradient;
     mix-blend-mode: multiply;
     position: absolute;
     inset: 0;
@@ -65,7 +65,7 @@
               background-color: $white;
               position: absolute;
               left: 50%;
-              bottom: 0;
+              bottom: -2px;
               transform: translateX(-50%);
               transition: 0.3s ease-in-out;
             }
@@ -76,8 +76,8 @@
               }
             }
 
-            &.active {
-              color: $dark;
+            &.active::after {
+              width: 100%;
             }
           }
 
@@ -87,7 +87,7 @@
         }
       }
 
-      .nav-list-collapse {
+      .nav-list-dropdown {
         display: none;
       }
     }
@@ -268,3 +268,6 @@
     }
   }
 }
+
+/* import catalog page */
+@import "catalog";

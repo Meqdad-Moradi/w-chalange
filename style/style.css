@@ -215,8 +215,47 @@ section {
   margin-right: 2em;
 }
 
-.showcase #header .nav .nav-list-dropdown {
-  display: none;
+.showcase #header .nav .nav-list .nav-list-item.dropdown-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+}
+
+.showcase #header .nav .nav-list .nav-list-item.dropdown-item i {
+  padding-left: 0.5em;
+  color: #fff;
+}
+
+.showcase #header .nav .nav-list .nav-list-item:hover .dropdown-list {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.showcase #header .nav .dropdown-list {
+  opacity: 0;
+  pointer-events: none;
+  background-color: #000;
+  padding: 1em;
+  color: #000;
+  position: absolute;
+  min-width: 150px;
+  left: 0;
+  top: 120%;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .showcase #header .nav-cart-container {

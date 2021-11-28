@@ -83,11 +83,13 @@ navToggle.addEventListener("click", responsiveNav);
 // ************ catalog page ************* //
 const productsEl = document.querySelector("#display-product .products");
 const filterBtnsContainer = document.querySelector(".filter-btn-container");
+const requstedURL =
+  "https://raw.githubusercontent.com/Meqdad-Moradi/womensbest-chalange/main/data.json";
 
 productsEl.innerHTML = "";
 filterBtnsContainer.innerHTML = "";
 
-fetch("./data.json")
+fetch(requstedURL)
   .then((res) => {
     if (res.status === 200) {
       return res.json();

@@ -84,11 +84,34 @@
           &:not(:last-child) {
             margin-right: 2em;
           }
+
+          &.dropdown-item {
+            @include flex();
+            position: relative;
+            i {
+              padding-left: 0.5em;
+              color: $white;
+            }
+          }
+
+          &:hover .dropdown-list {
+            opacity: 1;
+            pointer-events: all;
+          }
         }
       }
 
-      .nav-list-dropdown {
-        display: none;
+      .dropdown-list {
+        opacity: 0;
+        pointer-events: none;
+        background-color: $black;
+        padding: 1em;
+        color: $black;
+        position: absolute;
+        min-width: 150px;
+        left: 0;
+        top: 120%;
+        transition: all 0.3s ease-in-out;
       }
     }
 

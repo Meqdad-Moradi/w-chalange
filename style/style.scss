@@ -4,6 +4,7 @@
 
 .container {
   width: 80%;
+  max-width: 1920px;
   margin: 0 auto;
 }
 
@@ -81,10 +82,8 @@
               transition: 0.3s ease-in-out;
             }
 
-            &:hover {
-              &::after {
-                width: 100%;
-              }
+            &:hover::after {
+              width: 100%;
             }
 
             &.active::after {
@@ -97,6 +96,22 @@
             button {
               @include flex();
               cursor: pointer;
+              position: relative;
+
+              &::after {
+                content: "";
+                height: 1px;
+                width: 0%;
+                background-color: $white;
+                position: absolute;
+                left: 50%;
+                bottom: -2px;
+                transform: translateX(-50%);
+                transition: 0.3s ease-in-out;
+              }
+              &:hover::after {
+                width: 100%;
+              }
 
               &:focus + .dropdown-list {
                 opacity: 1;

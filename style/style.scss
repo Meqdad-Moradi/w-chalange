@@ -20,7 +20,7 @@
     mix-blend-mode: multiply;
     position: absolute;
     inset: 0;
-    z-index: 10;
+    z-index: 1;
   }
 
   #header {
@@ -52,7 +52,18 @@
     .nav {
       .nav-list {
         @include flex();
+
         .nav-list-item {
+          &:not(:last-child) {
+            margin-right: 2em;
+          }
+
+          button {
+            color: $white;
+            font-size: 1rem;
+            font-family: "Poppins", sans-serif;
+          }
+
           a {
             color: $white;
             transition: all 0.3s ease-in-out;
@@ -81,38 +92,59 @@
             }
           }
 
-          &:not(:last-child) {
-            margin-right: 2em;
-          }
-
           &.dropdown-item {
-            @include flex();
             position: relative;
+            button {
+              @include flex();
+              cursor: pointer;
+
+              &:focus + .dropdown-list {
+                opacity: 1;
+                pointer-events: all;
+                transform: translateY(0);
+              }
+            }
             i {
               padding-left: 0.5em;
               color: $white;
             }
-          }
 
-          &:hover,
-          &:focus .dropdown-list {
-            opacity: 1;
-            pointer-events: all;
+            .dropdown-list {
+              position: absolute;
+              left: 0;
+              top: calc(100% + 20px);
+              pointer-events: none;
+              background-color: $white;
+              min-width: 200px;
+              border-radius: 5px;
+              box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+              overflow: hidden;
+              display: grid;
+              place-items: center;
+              opacity: 0;
+              z-index: 1000;
+              transform: translateY(-10px);
+              transition: all 0.3s ease-in-out;
+
+              li {
+                border-bottom: 1px solid $light;
+                width: 100%;
+                text-align: center;
+              }
+              a {
+                display: inline-block;
+                color: $black;
+                width: 100%;
+                height: 100%;
+                padding: 0.5em 1em;
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                  background-color: $light;
+                }
+              }
+            }
           }
         }
-      }
-
-      .dropdown-list {
-        opacity: 0;
-        pointer-events: none;
-        background-color: $black;
-        padding: 1em;
-        color: $black;
-        position: absolute;
-        min-width: 150px;
-        left: 0;
-        top: 120%;
-        transition: all 0.3s ease-in-out;
       }
     }
 

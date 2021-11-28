@@ -1,4 +1,9 @@
+/*************** navbar section ***************/
 const header = document.querySelector("#header");
+
+function showDropdownMenu() {
+  dropdownList.classList.toggle("active");
+}
 
 function stickyHeader() {
   const size = window.scrollY;
@@ -123,7 +128,9 @@ function filterBtnsCategory(data) {
     })
     .join(" ");
 
-  filterBtnsContainer.innerHTML = colors;
+  if (document.body.id === "catalog") {
+    filterBtnsContainer.innerHTML = colors;
+  }
 
   // filter products
   const filterBtns = document.querySelectorAll(".filter-btn");
@@ -163,7 +170,9 @@ function products(myData) {
     })
     .join(" ");
 
-  productsEl.innerHTML = productItems;
+  if (document.body.id === "catalog") {
+    productsEl.innerHTML = productItems;
+  }
 }
 
 function addProduct(index) {
@@ -180,5 +189,10 @@ openCartBtn.addEventListener("click", (e) => {
 });
 
 cartCloseBtn.addEventListener("click", (e) => {
+  cart.classList.remove("active");
+});
+
+cart.addEventListener("click", (e) => {
+  if (e.target !== e.currentTarget) return;
   cart.classList.remove("active");
 });

@@ -86,8 +86,10 @@ const filterBtnsContainer = document.querySelector(".filter-btn-container");
 const requstedURL =
   "https://raw.githubusercontent.com/Meqdad-Moradi/womensbest-chalange/main/data.json";
 
-productsEl.innerHTML = "";
-filterBtnsContainer.innerHTML = "";
+if (document.body.id === "catalog") {
+  productsEl.innerHTML = "";
+  filterBtnsContainer.innerHTML = "";
+}
 
 fetch(requstedURL)
   .then((res) => {
@@ -167,3 +169,16 @@ function products(myData) {
 function addProduct(index) {
   console.log(index);
 }
+
+// ************ cart section ************* //
+const cartCloseBtn = document.querySelector(".cart-close-btn");
+const openCartBtn = document.querySelector("#open-cart");
+const cart = document.querySelector(".cart");
+
+openCartBtn.addEventListener("click", (e) => {
+  cart.classList.add("active");
+});
+
+cartCloseBtn.addEventListener("click", (e) => {
+  cart.classList.remove("active");
+});

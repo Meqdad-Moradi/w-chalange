@@ -328,12 +328,12 @@ section {
 }
 
 .showcase #header .nav-cart-container .cart {
-  background-color: rgba(0, 0, 0, 0.5);
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vw;
   z-index: 100000;
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
   pointer-events: none;
   -webkit-transition: all 0.3s ease-in-out;
@@ -355,10 +355,11 @@ section {
   top: 0;
   right: 0;
   height: 100vh;
-  width: 35%;
+  width: 30vw;
   background-color: #fff;
   padding: 2em;
   z-index: 999999;
+  overflow-y: scroll;
   -webkit-transform: translateY(-10px);
           transform: translateY(-10px);
   -webkit-transition: all 0.4s ease-in-out;
@@ -373,7 +374,7 @@ section {
 
 .showcase #header .nav-cart-container .cart-close-btn i {
   color: #ffb00d;
-  font-size: 2rem;
+  font-size: 1.5rem;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
@@ -572,6 +573,58 @@ section {
   margin-right: 0.1em;
 }
 
+/* hero section */
+.hero .hero-content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(300px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  grid-gap: 3em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hero .hero-img {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background-color: #f1f0f1;
+  padding: 3em;
+}
+
+.hero .hero-img img {
+  width: 50%;
+  mix-blend-mode: multiply;
+}
+
+.hero .hero-text .title {
+  margin-bottom: 1em;
+}
+
+/* footer section */
+.footer {
+  height: 50vh;
+  background-color: #000;
+}
+
+.footer .container {
+  height: inherit;
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.footer p {
+  color: #808080;
+  font-weight: 300;
+}
+
+/* media queries */
 @media (max-width: 760px) {
   .showcase header .nav-toggle {
     display: block !important;
@@ -583,7 +636,7 @@ section {
   .showcase header .nav-cart-container {
     position: absolute;
     top: 50%;
-    right: 25%;
+    right: 15%;
     -webkit-box-pack: end !important;
         -ms-flex-pack: end !important;
             justify-content: flex-end !important;
@@ -683,6 +736,9 @@ section {
       -ms-flex-pack: justify;
           justify-content: space-between;
   grid-gap: 3em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-top: 2em;
 }
 

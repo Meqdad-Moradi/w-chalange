@@ -19,10 +19,7 @@
 
 #display-product {
   .products {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    justify-content: space-between;
-    grid-gap: 3em;
+    @include grid();
     margin-top: 2em;
   }
 

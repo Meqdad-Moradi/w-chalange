@@ -181,7 +181,6 @@ function showProducts(myData) {
         if (item.id == id) {
           cart.push(item);
           renderCartItems();
-          console.log(cart);
         }
       });
     })

@@ -119,7 +119,7 @@ section {
   content: "";
   height: 100%;
   width: 100%;
-  background: linear-gradient(45deg, #2323f5, #e425a4);
+  background: linear-gradient(45deg, rgba(35, 35, 245, 0.8), rgba(228, 37, 164, 0.8));
   mix-blend-mode: multiply;
   position: absolute;
   inset: 0;
@@ -349,9 +349,10 @@ section {
 
 .showcase #header .nav-cart-container .cart {
   position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vw;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
   z-index: 100000;
   background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
@@ -390,13 +391,28 @@ section {
   position: absolute;
   left: 25px;
   top: 20px;
+  border: 3px solid #ffb00d;
+  border-radius: 5px;
+  height: 25px;
+  width: 25px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .showcase #header .nav-cart-container .cart-close-btn i {
   color: #ffb00d;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  line-height: 0;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+
+.showcase #header .nav-cart-container .cart-close-btn:hover {
+  border-color: #000;
 }
 
 .showcase #header .nav-cart-container .cart-close-btn:hover i {
@@ -405,11 +421,30 @@ section {
 
 .showcase #header .nav-cart-container .title {
   text-align: center;
-  padding-block: 2em;
+  padding-block: 1em;
+  position: relative;
+}
+
+.showcase #header .nav-cart-container .title::after {
+  content: "";
+  height: 3px;
+  width: 50px;
+  background-color: #ffb00d;
+  opacity: 0.3;
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 
 .showcase #header .nav-cart-container .cart-body {
   width: 100%;
+  margin-top: 2em;
+}
+
+.showcase #header .nav-cart-container .cart-body .cart-info {
+  text-align: center;
 }
 
 .showcase #header .nav-cart-container .cart-row {
@@ -432,6 +467,8 @@ section {
 
 .showcase #header .nav-cart-container .cart-row:not(:last-child) {
   margin-bottom: 2em;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #f1f0f1;
 }
 
 .showcase #header .nav-cart-container .cart-img-container img {
@@ -511,20 +548,18 @@ section {
   opacity: 0;
   -webkit-transition: all 0.5s ease-out;
   transition: all 0.5s ease-out;
-  -webkit-transition-delay: 0.5s;
-          transition-delay: 0.5s;
 }
 
 .showcase .slide-container .slide.active {
   opacity: 1;
-  -webkit-transition-delay: 0s;
-          transition-delay: 0s;
 }
 
 .showcase .slide-container .slide img {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 
 .showcase .slide-container .slide .content {
@@ -654,14 +689,10 @@ section {
     z-index: 99999;
   }
   .showcase header .nav-cart-container {
-    position: absolute;
-    top: 50%;
-    right: 15%;
-    -webkit-box-pack: end !important;
-        -ms-flex-pack: end !important;
-            justify-content: flex-end !important;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    margin-left: auto;
+  }
+  .showcase header .cart-content {
+    width: 90% !important;
   }
   .showcase header .nav {
     position: fixed;
@@ -723,6 +754,22 @@ section {
 @media (max-width: 812px) {
   .slide .content h1 {
     font-size: 2rem !important;
+  }
+  .cart-row {
+    display: -ms-grid !important;
+    display: grid !important;
+    -ms-grid-columns: (1fr)[3];
+        grid-template-columns: repeat(3, 1fr);
+  }
+  .cart-img-container {
+    grid-column: span 3;
+    display: -ms-grid;
+    display: grid;
+    place-items: center;
+  }
+  .cart-text {
+    grid-column: span 2;
+    margin-left: 0 !important;
   }
 }
 
@@ -792,6 +839,10 @@ section {
   transition: all 0.3s ease-in-out;
 }
 
+#display-product .filter-btn-container .filter-btn:hover {
+  background-color: #ffb00d;
+}
+
 #display-product .filter-btn-container .filter-btn.active {
   background-color: #ffb00d;
 }
@@ -824,5 +875,21 @@ section {
 #display-product .product .btn {
   cursor: pointer;
   padding: 0.6em 1.5em;
+}
+
+/* media queries */
+@media (max-width: 760px) {
+  .filter-btn-container {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+    -webkit-box-align: start !important;
+        -ms-flex-align: start !important;
+            align-items: flex-start !important;
+  }
+  .filter-btn:not(:last-child) {
+    margin-bottom: 0.5em;
+  }
 }
 /*# sourceMappingURL=style.css.map */

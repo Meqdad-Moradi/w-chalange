@@ -23,7 +23,7 @@ window.addEventListener("scroll", stickyHeader);
 
 // ************ shocase slide ************* //
 
-const slides = Array.from(document.querySelectorAll(".slide"));
+const slides = [...document.querySelectorAll(".slide")];
 const sliderIndicator = document.querySelectorAll(".slider-indicator span");
 const auto = true;
 const intervalTime = 5000;
@@ -46,7 +46,7 @@ function slider() {
 }
 
 // auto slide
-if (auto) {
+if (auto && document.body.id === "index-page") {
   interval = setInterval(slider, intervalTime);
 }
 
@@ -96,21 +96,19 @@ if (document.body.id === "catalog") {
   filterBtnsContainer.innerHTML = "";
 }
 
-fetch(requstedURL)
-  .then((res) => {
-    if (res.status === 200) {
-      return res.json();
-    } else {
-      throw new Error("Data not found!");
-    }
-  })
-  .then((data) => {
-    products(data);
-    filterBtnsCategory(data);
-  });
+async function getProducts() {
+  try {
+    let result = await fetch(requstedURL);
+    let data = await result.json();
+    showProducts(data);
+    showFilterBtns(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // filter btns
-function filterBtnsCategory(data) {
+function showFilterBtns(data) {
   const colors = data
     .reduce(
       (item, color) => {
@@ -143,16 +141,16 @@ function filterBtnsCategory(data) {
       e.currentTarget.classList.add("active");
 
       if (id === "all") {
-        products(data);
+        showProducts(data);
       } else {
-        products(color);
+        showProducts(color);
       }
     })
   );
 }
 
-// products
-function products(myData) {
+// display products
+function showProducts(myData) {
   const productItems = myData
     .map((item, index) => {
       return `
@@ -164,7 +162,7 @@ function products(myData) {
           <h2 class="title">${item.name}</h2>
           <p class="body-text">${item.desc}</p>
           <p class="price">$${item.price}</p>
-          <button class="btn" onclick="addProduct(${index})">add to cart</button>
+          <button class="btn add-to-cart" data-id="${item.id}">add to cart</button>
         </div>
       </article>`;
     })
@@ -173,26 +171,96 @@ function products(myData) {
   if (document.body.id === "catalog") {
     productsEl.innerHTML = productItems;
   }
+
+  const btns = document.querySelectorAll(".add-to-cart");
+  btns.forEach((btn) =>
+    btn.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.id;
+
+      myData.forEach((item) => {
+        if (item.id == id) {
+          cart.push(item);
+          renderCartItems();
+          console.log(cart);
+        }
+      });
+    })
+  );
 }
 
-function addProduct(index) {
-  console.log(index);
-}
+window.addEventListener("DOMContentLoaded", () => {
+  getProducts();
+});
 
 // ************ cart section ************* //
 const cartCloseBtn = document.querySelector(".cart-close-btn");
-const openCartBtn = document.querySelector("#open-cart");
-const cart = document.querySelector(".cart");
+const cartOpenBtn = document.querySelector("#open-cart");
+const cartEl = document.querySelector(".cart");
+const cartBody = document.querySelector(".cart-body");
+const cartTotal = document.querySelector(".total-price");
+const cartCheckoutBtn = document.querySelector(".checkout-btn");
+let cart = [];
 
-openCartBtn.addEventListener("click", (e) => {
-  cart.classList.add("active");
+cartOpenBtn.addEventListener("click", (e) => {
+  cartEl.classList.add("active");
 });
 
 cartCloseBtn.addEventListener("click", (e) => {
-  cart.classList.remove("active");
+  cartEl.classList.remove("active");
 });
 
-cart.addEventListener("click", (e) => {
+cartEl.addEventListener("click", (e) => {
   if (e.target !== e.currentTarget) return;
-  cart.classList.remove("active");
+  cartEl.classList.remove("active");
 });
+
+// render cart items
+function renderCartItems() {
+  let totalPrice = 0;
+  if (cart.length === 0) {
+    const p = document.createElement("p");
+    p.className = "cart-info";
+    p.textContent = "your cart is empty";
+    cartBody.appendChild(p);
+  } else {
+    const cartInfo = cartBody.querySelector(".cart-info");
+    cartInfo.style.display = "none";
+
+    // count the items price
+    cart.forEach((item) => {
+      totalPrice += item.price;
+    });
+
+    // manipulate the cart inner HTML to show items in cart
+    cartBody.innerHTML += `
+            <article class="cart-row">
+              <div class="cart-img-container">
+                <img src=${cart[cart.length - 1].img} alt=${
+      cart[cart.length - 1].name
+    }/>
+              </div>
+  
+              <div class="cart-text">
+                <h3 class="sub-title">${cart[cart.length - 1].name}</h3>
+                <p class="item-price">$${cart[cart.length - 1].price}</p>
+                <button class="remove-item-btn">remove</button>
+              </div>
+  
+              <div class="quantity-container">
+                <span class="quantity-btn up"
+                  ><i class="fas fa-angle-up"></i
+                ></span>
+                <span class="quantity-btn quantity">${
+                  cart[cart.length - 1].qty
+                }</span>
+                <span class="quantity-btn down"
+                  ><i class="fas fa-angle-down"></i
+                ></span>
+              </div>
+            </article>
+        `;
+  }
+  cartTotal.textContent = `$${totalPrice}.00`;
+}
+
+renderCartItems();

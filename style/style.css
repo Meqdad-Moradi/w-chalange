@@ -343,7 +343,7 @@ section {
   color: #fff;
 }
 
-.showcase #header .nav-cart-container i:not(:last-child) {
+.showcase #header .nav-cart-container i.fas.fa-search {
   margin-right: 2em;
 }
 
@@ -391,7 +391,7 @@ section {
   position: absolute;
   left: 25px;
   top: 20px;
-  border: 3px solid #ffb00d;
+  background-color: #ffb00d;
   border-radius: 5px;
   height: 25px;
   width: 25px;
@@ -404,7 +404,7 @@ section {
 }
 
 .showcase #header .nav-cart-container .cart-close-btn i {
-  color: #ffb00d;
+  color: #fff;
   font-size: 1.25rem;
   line-height: 0;
   -webkit-transition: all 0.3s ease-in-out;
@@ -412,11 +412,7 @@ section {
 }
 
 .showcase #header .nav-cart-container .cart-close-btn:hover {
-  border-color: #000;
-}
-
-.showcase #header .nav-cart-container .cart-close-btn:hover i {
-  color: #000;
+  background-color: #000;
 }
 
 .showcase #header .nav-cart-container .title {
@@ -690,6 +686,9 @@ section {
   }
   .showcase header .nav-cart-container {
     margin-left: auto;
+  }
+  .showcase header .nav-cart-container i.fas.fa-shopping-cart {
+    margin-right: 2em;
   }
   .showcase header .cart-content {
     width: 90% !important;

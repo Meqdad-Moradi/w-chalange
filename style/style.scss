@@ -169,9 +169,10 @@
       i {
         cursor: pointer;
         color: $white;
-        &:not(:last-child) {
-          margin-right: 2em;
-        }
+      }
+
+      i.fas.fa-search {
+        margin-right: 2em;
       }
 
       /* cart section */
@@ -215,7 +216,7 @@
         position: absolute;
         left: 25px;
         top: 20px;
-        border: 3px solid $yellow;
+        background-color: $yellow;
         border-radius: 5px;
         height: 25px;
         width: 25px;
@@ -225,17 +226,14 @@
         transition: all 0.3s ease-in-out;
 
         i {
-          color: $yellow;
+          color: $white;
           font-size: 1.25rem;
           line-height: 0;
           transition: all 0.3s ease-in-out;
         }
 
         &:hover {
-          border-color: $black;
-          i {
-            color: $black;
-          }
+          background-color: $black;
         }
       }
 
@@ -473,6 +471,10 @@
 
       .nav-cart-container {
         margin-left: auto;
+
+        i.fas.fa-shopping-cart {
+          margin-right: 2em;
+        }
       }
 
       .cart-content {

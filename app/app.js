@@ -179,7 +179,8 @@ function showProducts(myData) {
 
       myData.forEach((item) => {
         if (item.id == id) {
-          cart.push(item);
+          const productItem = { ...item, amount: 1 };
+          cart.push(productItem);
           renderCartItems();
         }
       });
@@ -250,7 +251,7 @@ function renderCartItems() {
                   ><i class="fas fa-angle-up"></i
                 ></span>
                 <span class="quantity-btn quantity">${
-                  cart[cart.length - 1].qty
+                  cart[cart.length - 1].amount
                 }</span>
                 <span class="quantity-btn down"
                   ><i class="fas fa-angle-down"></i
@@ -259,7 +260,7 @@ function renderCartItems() {
             </article>
         `;
   }
-  cartTotal.textContent = `$${totalPrice}.00`;
+  cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
 }
 
 renderCartItems();

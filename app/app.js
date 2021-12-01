@@ -172,7 +172,9 @@ function showProducts(myData) {
     productsEl.innerHTML = productItems;
   }
 
+  // get the add to cart btns
   const btns = document.querySelectorAll(".add-to-cart");
+
   btns.forEach((btn) =>
     btn.addEventListener("click", (e) => {
       const id = e.currentTarget.dataset.id;
@@ -180,17 +182,14 @@ function showProducts(myData) {
       myData.forEach((item) => {
         if (item.id == id) {
           const productItem = { ...item, amount: 1 };
-          cart.push(productItem);
-          renderCartItems();
+          // cart.push(productItem);
+          cart = [...cart, productItem];
+          renderCartItems(productItem);
         }
       });
     })
   );
 }
-
-window.addEventListener("DOMContentLoaded", () => {
-  getProducts();
-});
 
 // ************ cart section ************* //
 const cartCloseBtn = document.querySelector(".cart-close-btn");
@@ -215,7 +214,7 @@ cartEl.addEventListener("click", (e) => {
 });
 
 // render cart items
-function renderCartItems() {
+function renderCartItems(item) {
   let totalPrice = 0;
   if (cart.length === 0) {
     const p = document.createElement("p");
@@ -223,6 +222,7 @@ function renderCartItems() {
     p.textContent = "your cart is empty";
     cartBody.appendChild(p);
   } else {
+    // remove the cart info EL if the cart is not empty
     const cartInfo = cartBody.querySelector(".cart-info");
     cartInfo.style.display = "none";
 
@@ -235,27 +235,23 @@ function renderCartItems() {
     cartBody.innerHTML += `
             <article class="cart-row">
               <div class="cart-img-container">
-                <img src=${cart[cart.length - 1].img} alt=${
-      cart[cart.length - 1].name
-    }/>
+                <img src=${item.img} alt=${item.name}/>
               </div>
   
               <div class="cart-text">
-                <h3 class="sub-title">${cart[cart.length - 1].name}</h3>
-                <p class="item-price">$${cart[cart.length - 1].price}</p>
+                <h3 class="sub-title">${item.name}</h3>
+                <p class="item-price">$${item.price}</p>
                 <button class="remove-item-btn">remove</button>
               </div>
   
               <div class="quantity-container">
-                <span class="quantity-btn up"
-                  ><i class="fas fa-angle-up"></i
-                ></span>
-                <span class="quantity-btn quantity">${
-                  cart[cart.length - 1].amount
-                }</span>
-                <span class="quantity-btn down"
-                  ><i class="fas fa-angle-down"></i
-                ></span>
+                <span class="quantity-btn up">
+                  <i class="fas fa-angle-up" data-id="${item.id}"></i>
+                </span>
+                <span class="quantity-btn quantity">${item.amount}</span>
+                <span class="quantity-btn down">
+                  <i class="fas fa-angle-down" data-id="${item.id}"></i>
+                </span>
               </div>
             </article>
         `;
@@ -263,4 +259,9 @@ function renderCartItems() {
   cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
 }
 
-renderCartItems();
+window.addEventListener("DOMContentLoaded", () => {
+  getProducts();
+  renderCartItems();
+});
+
+

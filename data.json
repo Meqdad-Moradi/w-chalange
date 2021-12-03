@@ -3,7 +3,7 @@
     "id": 1,
     "name": "watch one",
     "img": "./images/w1.jpg",
-    "desc": "this is description",
+    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum perspiciatis nostrum, quod doloremque debitis.",
     "price": 300,
     "color": "red"
   },
@@ -11,7 +11,7 @@
     "id": 2,
     "name": "watch two",
     "img": "./images/w2.jpg",
-    "desc": "this is description",
+    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum perspiciatis nostrum, quod doloremque debitis.",
     "price": 250,
     "color": "green"
   },
@@ -19,7 +19,7 @@
     "id": 3,
     "name": "watch three",
     "img": "./images/w3.jpg",
-    "desc": "this is description",
+    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum perspiciatis nostrum, quod doloremque debitis.",
     "price": 400,
     "color": "blue"
   },
@@ -27,7 +27,7 @@
     "id": 4,
     "name": "watch four",
     "img": "./images/w4.jpg",
-    "desc": "this is description",
+    "desc": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias harum perspiciatis nostrum, quod doloremque debitis.",
     "price": 200,
     "color": "white"
   }

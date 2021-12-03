@@ -868,7 +868,9 @@ section {
 }
 
 #display-product .product .price {
-  color: #808080;
+  color: #ffb00d;
+  margin-top: 1em;
+  font-weight: 500;
 }
 
 #display-product .product .btn {

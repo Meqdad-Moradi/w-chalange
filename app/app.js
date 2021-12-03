@@ -259,9 +259,29 @@ function renderCartItems(item) {
   cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
 }
 
+// manipulate the cat functionality
+cartBody.addEventListener("click", (e) => {
+  if (e.target.classList.contains("fa-angle-up")) {
+    const upBtn = e.target;
+    const id = upBtn.dataset.id;
+    const tempItem = cart.find((item) => item.id === parseFloat(id));
+    let totalPrice = 0;
+
+    tempItem.amount += 1;
+    tempItem.price *= tempItem.amount;
+
+    if (tempItem.amount > 10) return;
+
+    cart.forEach((item) => {
+      totalPrice += item.price;
+    });
+
+    upBtn.parentElement.nextElementSibling.textContent = tempItem.amount;
+    cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
+  }
+});
+
 window.addEventListener("DOMContentLoaded", () => {
   getProducts();
   renderCartItems();
 });
-
-

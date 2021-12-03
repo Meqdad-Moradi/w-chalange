@@ -4,7 +4,7 @@
     "name": "watch one",
     "img": "./images/w1.jpg",
     "desc": "this is description",
-    "price": 300.99,
+    "price": 300,
     "color": "red"
   },
   {
@@ -12,7 +12,7 @@
     "name": "watch two",
     "img": "./images/w2.jpg",
     "desc": "this is description",
-    "price": 250.99,
+    "price": 250,
     "color": "green"
   },
   {
@@ -20,7 +20,7 @@
     "name": "watch three",
     "img": "./images/w3.jpg",
     "desc": "this is description",
-    "price": 400.99,
+    "price": 400,
     "color": "blue"
   },
   {
@@ -28,7 +28,7 @@
     "name": "watch four",
     "img": "./images/w4.jpg",
     "desc": "this is description",
-    "price": 200.99,
+    "price": 200,
     "color": "white"
   }
 ]

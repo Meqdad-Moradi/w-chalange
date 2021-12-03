@@ -868,6 +868,7 @@ section {
 }
 
 #display-product .product .price {
+  font-size: 1.125rem;
   color: #ffb00d;
   margin-top: 1em;
   font-weight: 500;

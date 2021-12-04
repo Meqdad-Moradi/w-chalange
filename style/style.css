@@ -291,7 +291,7 @@ section {
   display: grid;
   place-items: center;
   opacity: 0;
-  z-index: 1000;
+  z-index: 1500;
   -webkit-transform: translateY(-10px);
           transform: translateY(-10px);
   -webkit-transition: all 0.3s ease-in-out;

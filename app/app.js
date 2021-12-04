@@ -162,7 +162,7 @@ function showProducts(myData) {
           <h2 class="title">${item.name}</h2>
           <p class="body-text">${item.desc}</p>
           <p class="price">$${item.price}</p>
-          <button class="btn add-to-cart" data-id="${item.id}">add to cart</button>
+          <button class="btn add-to-cart" id="${item.id}" data-id="${item.id}">add to cart</button>
         </div>
       </article>`;
     })
@@ -178,13 +178,20 @@ function showProducts(myData) {
   btns.forEach((btn) =>
     btn.addEventListener("click", (e) => {
       const id = e.currentTarget.dataset.id;
-
       myData.forEach((item) => {
         if (item.id == id) {
           const productItem = { ...item, amount: 1 };
-          // cart.push(productItem);
           cart = [...cart, productItem];
           renderCartItems(productItem);
+        }
+      });
+
+      cart.forEach((item) => {
+        if (id == item.id) {
+          btn.setAttribute("disabled", "disabled");
+          btn.textContent = "in cart";
+        } else {
+          btn.removeAttribute("disabled");
         }
       });
     })
@@ -215,7 +222,6 @@ cartEl.addEventListener("click", (e) => {
 
 // render cart items
 function renderCartItems(item) {
-  let totalPrice = 0;
   if (cart.length === 0) {
     const p = document.createElement("p");
     p.className = "cart-info";
@@ -226,12 +232,6 @@ function renderCartItems(item) {
     const cartInfo = cartBody.querySelector(".cart-info");
     cartInfo.style.display = "none";
 
-    // count the items price
-    cart.forEach((item) => {
-      totalPrice += item.price;
-    });
-
-    // manipulate the cart inner HTML to show items in cart
     cartBody.innerHTML += `
             <article class="cart-row">
               <div class="cart-img-container">
@@ -256,7 +256,8 @@ function renderCartItems(item) {
             </article>
         `;
   }
-  cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
+  // cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
+  setCartValue();
 }
 
 // manipulate the cat functionality
@@ -265,21 +266,24 @@ cartBody.addEventListener("click", (e) => {
     const upBtn = e.target;
     const id = upBtn.dataset.id;
     const tempItem = cart.find((item) => item.id === parseFloat(id));
-    let totalPrice = 0;
-
     tempItem.amount += 1;
-    tempItem.price *= tempItem.amount;
-
     if (tempItem.amount > 10) return;
-
-    cart.forEach((item) => {
-      totalPrice += item.price;
-    });
-
+    // update quantity textcontent on click
     upBtn.parentElement.nextElementSibling.textContent = tempItem.amount;
-    cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
+
+    setCartValue();
   }
 });
+
+// set the cart value
+function setCartValue() {
+  let totalPrice = 0;
+  cart.forEach((item) => {
+    totalPrice += item.price * item.amount;
+  });
+
+  cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
+}
 
 window.addEventListener("DOMContentLoaded", () => {
   getProducts();

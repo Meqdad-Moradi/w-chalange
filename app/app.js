@@ -223,12 +223,13 @@ cartEl.addEventListener("click", (e) => {
 // render cart items
 function renderCartItems(item) {
   if (cart.length === 0) {
+    // create cart info (p) element when the cart is empty
     const p = document.createElement("p");
     p.className = "cart-info";
     p.textContent = "your cart is empty";
     cartBody.appendChild(p);
   } else {
-    // remove the cart info EL if the cart is not empty
+    // don't show the cart info EL if the cart is not empty
     const cartInfo = cartBody.querySelector(".cart-info");
     cartInfo.style.display = "none";
 
@@ -241,7 +242,7 @@ function renderCartItems(item) {
               <div class="cart-text">
                 <h3 class="sub-title">${item.name}</h3>
                 <p class="item-price">$${item.price}</p>
-                <button class="remove-item-btn">remove</button>
+                <button class="remove-item-btn"data-id="${item.id}">remove</button>
               </div>
   
               <div class="quantity-container">
@@ -256,7 +257,7 @@ function renderCartItems(item) {
             </article>
         `;
   }
-  // cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
+
   setCartValue();
 }
 
@@ -268,8 +269,51 @@ cartBody.addEventListener("click", (e) => {
     const tempItem = cart.find((item) => item.id === parseFloat(id));
     tempItem.amount += 1;
     if (tempItem.amount > 10) return;
+
     // update quantity textcontent on click
     upBtn.parentElement.nextElementSibling.textContent = tempItem.amount;
+
+    setCartValue();
+  } else if (e.target.classList.contains("fa-angle-down")) {
+    const downBtn = e.target;
+    const id = downBtn.dataset.id;
+    const tempItem = cart.find((item) => item.id === parseFloat(id));
+    tempItem.amount -= 1;
+    if (tempItem.amount < 1) {
+      tempItem.amount = 1;
+      return;
+    }
+
+    // update quantity textcontent on click
+    downBtn.parentElement.previousElementSibling.textContent = tempItem.amount;
+
+    setCartValue();
+  } else if (e.target.classList.contains("remove-item-btn")) {
+    const rmvBtn = e.target;
+    const id = rmvBtn.dataset.id;
+    const tempItem = cart.find((item) => item.id === parseFloat(id));
+    const cartRow = rmvBtn.parentElement.parentElement;
+
+    // remove specific item from DOM
+    cartRow.remove();
+
+    // delete the specific item from cart
+    cart.forEach((item, index) => {
+      if (item === tempItem) {
+        cart.splice(index, 1);
+
+        // reset the button to normal functionality
+        const removedItemBtn = document.getElementById(id);
+        removedItemBtn.removeAttribute("disabled");
+        removedItemBtn.textContent = "add to cart";
+      }
+    });
+
+    // if the cart is empty show cart empty info
+    if (cart.length === 0) {
+      const cartInfo = cartBody.querySelector(".cart-info");
+      cartInfo.style.display = "block";
+    }
 
     setCartValue();
   }
@@ -278,10 +322,13 @@ cartBody.addEventListener("click", (e) => {
 // set the cart value
 function setCartValue() {
   let totalPrice = 0;
+
+  // set the total value to items prices
   cart.forEach((item) => {
     totalPrice += item.price * item.amount;
   });
 
+  // set the total price
   cartTotal.textContent = `$${parseFloat(totalPrice.toFixed(2))}`;
 }
 
